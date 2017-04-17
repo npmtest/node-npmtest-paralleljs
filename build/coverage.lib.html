@@ -1,0 +1,1175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-paralleljs/node_modules/paralleljs/lib/parallel.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-paralleljs">npmtest-paralleljs (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-paralleljs/node_modules/paralleljs/lib/parallel.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">13.3% <small>(27 / 203)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">13% <small>(13 / 100)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">3.45% <small>(1 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">13.5% <small>(27 / 200)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-paralleljs/node_modules/paralleljs/lib/</a> &#187; parallel.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿(function () {
+	var isCommonJS = typeof module !== 'undefined' &amp;&amp; module.exports;
+	var isNode = typeof global !== "undefined" &amp;&amp; {}.toString.call(global) == '[object global]';
+	var setImmediate = setImmediate || <span class="fstat-no" title="function not covered" >function (cb) {</span>
+<span class="cstat-no" title="statement not covered" >		setTimeout(cb, 0);</span>
+	};
+	var Worker = isNode ? require(__dirname + '/Worker.js') : <span class="branch-1 cbranch-no" title="branch not covered" >self.Worker;</span>
+	var URL = typeof self !== 'undefined' ? (<span class="branch-0 cbranch-no" title="branch not covered" >self.URL ? self.URL : self.webkitURL)</span> : null;
+	var _supports = (isNode || <span class="branch-1 cbranch-no" title="branch not covered" >self.Worker)</span> ? true : <span class="branch-1 cbranch-no" title="branch not covered" >false;</span> // node always supports parallel
+&nbsp;
+<span class="fstat-no" title="function not covered" >	function extend(from, to) {</span>
+<span class="cstat-no" title="statement not covered" >		if (!to) <span class="cstat-no" title="statement not covered" >to = {};</span></span>
+<span class="cstat-no" title="statement not covered" >		for (var i in from) {</span>
+<span class="cstat-no" title="statement not covered" >			if (to[i] === undefined) <span class="cstat-no" title="statement not covered" >to[i] = from[i];</span></span>
+		}
+<span class="cstat-no" title="statement not covered" >		return to;</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	function Operation() {</span>
+<span class="cstat-no" title="statement not covered" >		this._callbacks = [];</span>
+<span class="cstat-no" title="statement not covered" >		this._errCallbacks = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		this._resolved = 0;</span>
+<span class="cstat-no" title="statement not covered" >		this._result = null;</span>
+	}
+&nbsp;
+	Operation.prototype.resolve = <span class="fstat-no" title="function not covered" >function (err, res) {</span>
+<span class="cstat-no" title="statement not covered" >		if (!err) {</span>
+<span class="cstat-no" title="statement not covered" >			this._resolved = 1;</span>
+<span class="cstat-no" title="statement not covered" >			this._result = res;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			for (var i = 0; i &lt; this._callbacks.length; ++i) {</span>
+<span class="cstat-no" title="statement not covered" >				this._callbacks[i](res);</span>
+			}
+		} else {
+<span class="cstat-no" title="statement not covered" >			this._resolved = 2;</span>
+<span class="cstat-no" title="statement not covered" >			this._result = err;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			for (var iE = 0; iE &lt; this._errCallbacks.length; ++iE) {</span>
+<span class="cstat-no" title="statement not covered" >				this._errCallbacks[iE](res);</span>
+			}
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		this._callbacks = [];</span>
+<span class="cstat-no" title="statement not covered" >		this._errCallbacks = [];</span>
+	};
+&nbsp;
+	Operation.prototype.then = <span class="fstat-no" title="function not covered" >function (cb, errCb) {</span>
+<span class="cstat-no" title="statement not covered" >		if (this._resolved === 1) { // result</span>
+<span class="cstat-no" title="statement not covered" >			if (cb) {</span>
+<span class="cstat-no" title="statement not covered" >				cb(this._result);</span>
+			}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			return;</span>
+		} else <span class="cstat-no" title="statement not covered" >if (this._resolved === 2) { // error</span>
+<span class="cstat-no" title="statement not covered" >			if (errCb) {</span>
+<span class="cstat-no" title="statement not covered" >				errCb(this._result);</span>
+			}
+<span class="cstat-no" title="statement not covered" >			return;</span>
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if (cb) {</span>
+<span class="cstat-no" title="statement not covered" >			this._callbacks[this._callbacks.length] = cb;</span>
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if (errCb) {</span>
+<span class="cstat-no" title="statement not covered" >			this._errCallbacks[this._errCallbacks.length] = errCb;</span>
+		}
+<span class="cstat-no" title="statement not covered" >		return this;</span>
+	};
+&nbsp;
+	var defaults = {
+		evalPath: isNode ? __dirname + '/eval.js' : <span class="branch-1 cbranch-no" title="branch not covered" >null,</span>
+		maxWorkers: isNode ? require('os').cpus().length : <span class="branch-1 cbranch-no" title="branch not covered" >4,</span>
+		synchronous: true
+	};
+&nbsp;
+<span class="fstat-no" title="function not covered" >	function Parallel(data, options) {</span>
+<span class="cstat-no" title="statement not covered" >		this.data = data;</span>
+<span class="cstat-no" title="statement not covered" >		this.options = extend(defaults, options);</span>
+<span class="cstat-no" title="statement not covered" >		this.operation = new Operation();</span>
+<span class="cstat-no" title="statement not covered" >		this.operation.resolve(null, this.data);</span>
+<span class="cstat-no" title="statement not covered" >		this.requiredScripts = [];</span>
+<span class="cstat-no" title="statement not covered" >		this.requiredFunctions = [];</span>
+	}
+&nbsp;
+	// static method
+	Parallel.isSupported=<span class="fstat-no" title="function not covered" >function(){</span> <span class="cstat-no" title="statement not covered" >return _supports; </span>}
+	
+	Parallel.prototype.getWorkerSource = <span class="fstat-no" title="function not covered" >function (cb) {</span>
+<span class="cstat-no" title="statement not covered" >		var preStr = '';</span>
+<span class="cstat-no" title="statement not covered" >		var i = 0;</span>
+<span class="cstat-no" title="statement not covered" >		if (!isNode &amp;&amp; this.requiredScripts.length !== 0) {</span>
+<span class="cstat-no" title="statement not covered" >			preStr += 'importScripts("' + this.requiredScripts.join('","') + '");\r\n';</span>
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		for (i = 0; i &lt; this.requiredFunctions.length; ++i) {</span>
+<span class="cstat-no" title="statement not covered" >			if (this.requiredFunctions[i].name) {</span>
+<span class="cstat-no" title="statement not covered" >				preStr += 'var ' + this.requiredFunctions[i].name + ' = ' + this.requiredFunctions[i].fn.toString() + ';';</span>
+			} else {
+<span class="cstat-no" title="statement not covered" >				preStr += this.requiredFunctions[i].fn.toString();</span>
+			}
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if (isNode) {</span>
+<span class="cstat-no" title="statement not covered" >			return preStr + 'process.on("message", function(e) {process.send(JSON.stringify((' + cb.toString() + ')(JSON.parse(e).data)))})';</span>
+		} else {
+<span class="cstat-no" title="statement not covered" >			return preStr + 'self.onmessage = function(e) {self.postMessage((' + cb.toString() + ')(e.data))}';</span>
+		}
+	};
+&nbsp;
+	Parallel.prototype.require = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >		var args = Array.prototype.slice.call(arguments, 0),</span>
+			func;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		for (var i = 0; i &lt; args.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >			func = args[i];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			if (typeof func === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >				this.requiredScripts.push(func);</span>
+			} else <span class="cstat-no" title="statement not covered" >if (typeof func === 'function') {</span>
+<span class="cstat-no" title="statement not covered" >				this.requiredFunctions.push({ fn: func });</span>
+			} else <span class="cstat-no" title="statement not covered" >if (typeof func === 'object') {</span>
+<span class="cstat-no" title="statement not covered" >				this.requiredFunctions.push(func);</span>
+			}
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		return this;</span>
+	};
+&nbsp;
+	Parallel.prototype._spawnWorker = <span class="fstat-no" title="function not covered" >function (cb) {</span>
+<span class="cstat-no" title="statement not covered" >		var wrk;</span>
+<span class="cstat-no" title="statement not covered" >		var src = this.getWorkerSource(cb);</span>
+<span class="cstat-no" title="statement not covered" >		if (isNode) {</span>
+<span class="cstat-no" title="statement not covered" >			wrk = new Worker(this.options.evalPath);</span>
+<span class="cstat-no" title="statement not covered" >			wrk.postMessage(src);</span>
+		} else {
+<span class="cstat-no" title="statement not covered" >			if (Worker === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >				return undefined;</span>
+			}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			try {</span>
+<span class="cstat-no" title="statement not covered" >				if (this.requiredScripts.length !== 0) {</span>
+<span class="cstat-no" title="statement not covered" >					if (this.options.evalPath !== null) {</span>
+<span class="cstat-no" title="statement not covered" >						wrk = new Worker(this.options.evalPath);</span>
+<span class="cstat-no" title="statement not covered" >						wrk.postMessage(src);</span>
+					} else {
+<span class="cstat-no" title="statement not covered" >						throw new Error('Can\'t use required scripts without eval.js!');</span>
+					}
+				} else <span class="cstat-no" title="statement not covered" >if (!URL) {</span>
+<span class="cstat-no" title="statement not covered" >					throw new Error('Can\'t create a blob URL in this browser!');</span>
+				} else {
+<span class="cstat-no" title="statement not covered" >					var blob = new Blob([src], { type: 'text/javascript' });</span>
+<span class="cstat-no" title="statement not covered" >					var url = URL.createObjectURL(blob);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >					wrk = new Worker(url);</span>
+				}
+			} catch (e) {
+<span class="cstat-no" title="statement not covered" >				if (this.options.evalPath !== null) { // blob/url unsupported, cross-origin error</span>
+<span class="cstat-no" title="statement not covered" >					wrk = new Worker(this.options.evalPath);</span>
+<span class="cstat-no" title="statement not covered" >					wrk.postMessage(src);</span>
+				} else {
+<span class="cstat-no" title="statement not covered" >					throw e;</span>
+				}
+			}
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		return wrk;</span>
+	};
+&nbsp;
+	Parallel.prototype.spawn = <span class="fstat-no" title="function not covered" >function (cb) {</span>
+<span class="cstat-no" title="statement not covered" >		var that = this;</span>
+<span class="cstat-no" title="statement not covered" >		var newOp = new Operation();</span>
+<span class="cstat-no" title="statement not covered" >		this.operation.then(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >			var wrk = that._spawnWorker(cb);</span>
+<span class="cstat-no" title="statement not covered" >			if (wrk !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >				wrk.onmessage = <span class="fstat-no" title="function not covered" >function (msg) {</span></span>
+<span class="cstat-no" title="statement not covered" >					wrk.terminate();</span>
+<span class="cstat-no" title="statement not covered" >					that.data = msg.data;</span>
+<span class="cstat-no" title="statement not covered" >					newOp.resolve(null, that.data);</span>
+				};
+<span class="cstat-no" title="statement not covered" >				wrk.postMessage(that.data);</span>
+			} else <span class="cstat-no" title="statement not covered" >if (that.options.synchronous) {</span>
+<span class="cstat-no" title="statement not covered" >				setImmediate(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >					that.data = cb(that.data);</span>
+<span class="cstat-no" title="statement not covered" >					newOp.resolve(null, that.data);</span>
+				});
+			} else {
+<span class="cstat-no" title="statement not covered" >				throw new Error('Workers do not exist and synchronous operation not allowed!');</span>
+			}
+		});
+<span class="cstat-no" title="statement not covered" >		this.operation = newOp;</span>
+<span class="cstat-no" title="statement not covered" >		return this;</span>
+	};
+&nbsp;
+	Parallel.prototype._spawnMapWorker = <span class="fstat-no" title="function not covered" >function (i, cb, done) {</span>
+<span class="cstat-no" title="statement not covered" >		var that = this;</span>
+<span class="cstat-no" title="statement not covered" >		var wrk = that._spawnWorker(cb);</span>
+<span class="cstat-no" title="statement not covered" >		if (wrk !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >			wrk.onmessage = <span class="fstat-no" title="function not covered" >function (msg) {</span></span>
+<span class="cstat-no" title="statement not covered" >				wrk.terminate();</span>
+<span class="cstat-no" title="statement not covered" >				that.data[i] = msg.data;</span>
+<span class="cstat-no" title="statement not covered" >				done();</span>
+			};
+<span class="cstat-no" title="statement not covered" >			wrk.postMessage(that.data[i]);</span>
+		} else <span class="cstat-no" title="statement not covered" >if (that.options.synchronous) {</span>
+<span class="cstat-no" title="statement not covered" >			setImmediate(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >				that.data[i] = cb(that.data[i]);</span>
+<span class="cstat-no" title="statement not covered" >				done();</span>
+			});
+		} else {
+<span class="cstat-no" title="statement not covered" >			throw new Error('Workers do not exist and synchronous operation not allowed!');</span>
+		}
+	};
+&nbsp;
+	Parallel.prototype.map = <span class="fstat-no" title="function not covered" >function (cb) {</span>
+<span class="cstat-no" title="statement not covered" >		if (!this.data.length) {</span>
+<span class="cstat-no" title="statement not covered" >			return this.spawn(cb);</span>
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		var that = this;</span>
+<span class="cstat-no" title="statement not covered" >		var startedOps = 0;</span>
+<span class="cstat-no" title="statement not covered" >		var doneOps = 0;</span>
+<span class="fstat-no" title="function not covered" >		function done() {</span>
+<span class="cstat-no" title="statement not covered" >			if (++doneOps === that.data.length) {</span>
+<span class="cstat-no" title="statement not covered" >				newOp.resolve(null, that.data);</span>
+			} else <span class="cstat-no" title="statement not covered" >if (startedOps &lt; that.data.length) {</span>
+<span class="cstat-no" title="statement not covered" >				that._spawnMapWorker(startedOps++, cb, done);</span>
+			}
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		var newOp = new Operation();</span>
+<span class="cstat-no" title="statement not covered" >		this.operation.then(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >			for (; startedOps - doneOps &lt; that.options.maxWorkers &amp;&amp; startedOps &lt; that.data.length; ++startedOps) {</span>
+<span class="cstat-no" title="statement not covered" >				that._spawnMapWorker(startedOps, cb, done);</span>
+			}
+		});
+<span class="cstat-no" title="statement not covered" >		this.operation = newOp;</span>
+<span class="cstat-no" title="statement not covered" >		return this;</span>
+	};
+&nbsp;
+	Parallel.prototype._spawnReduceWorker = <span class="fstat-no" title="function not covered" >function (data, cb, done) {</span>
+<span class="cstat-no" title="statement not covered" >		var that = this;</span>
+<span class="cstat-no" title="statement not covered" >		var wrk = that._spawnWorker(cb);</span>
+<span class="cstat-no" title="statement not covered" >		if (wrk !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >			wrk.onmessage = <span class="fstat-no" title="function not covered" >function (msg) {</span></span>
+<span class="cstat-no" title="statement not covered" >				wrk.terminate();</span>
+<span class="cstat-no" title="statement not covered" >				that.data[that.data.length] = msg.data;</span>
+<span class="cstat-no" title="statement not covered" >				done();</span>
+			};
+<span class="cstat-no" title="statement not covered" >			wrk.postMessage(data);</span>
+		} else <span class="cstat-no" title="statement not covered" >if (that.options.synchronous) {</span>
+<span class="cstat-no" title="statement not covered" >			setImmediate(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >				that.data[that.data.length] = cb(data);</span>
+<span class="cstat-no" title="statement not covered" >				done();</span>
+			});
+		} else {
+<span class="cstat-no" title="statement not covered" >			throw new Error('Workers do not exist and synchronous operation not allowed!');</span>
+		}
+	};
+&nbsp;
+	Parallel.prototype.reduce = <span class="fstat-no" title="function not covered" >function (cb) {</span>
+<span class="cstat-no" title="statement not covered" >		if (!this.data.length) {</span>
+<span class="cstat-no" title="statement not covered" >			throw new Error('Can\'t reduce non-array data');</span>
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		var runningWorkers = 0;</span>
+<span class="cstat-no" title="statement not covered" >		var that = this;</span>
+<span class="fstat-no" title="function not covered" >		function done(data) {</span>
+<span class="cstat-no" title="statement not covered" >			--runningWorkers;</span>
+<span class="cstat-no" title="statement not covered" >			if (that.data.length === 1 &amp;&amp; runningWorkers === 0) {</span>
+<span class="cstat-no" title="statement not covered" >				that.data = that.data[0];</span>
+<span class="cstat-no" title="statement not covered" >				newOp.resolve(null, that.data);</span>
+			} else <span class="cstat-no" title="statement not covered" >if (that.data.length &gt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >				++runningWorkers;</span>
+<span class="cstat-no" title="statement not covered" >				that._spawnReduceWorker([that.data[0], that.data[1]], cb, done);</span>
+<span class="cstat-no" title="statement not covered" >				that.data.splice(0, 2);</span>
+			}
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		var newOp = new Operation();</span>
+<span class="cstat-no" title="statement not covered" >		this.operation.then(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >			if (that.data.length === 1) {</span>
+<span class="cstat-no" title="statement not covered" >				newOp.resolve(null, that.data[0]);</span>
+			} else {
+<span class="cstat-no" title="statement not covered" >				for (var i = 0; i &lt; that.options.maxWorkers &amp;&amp; i &lt; Math.floor(that.data.length / 2); ++i) {</span>
+<span class="cstat-no" title="statement not covered" >					++runningWorkers;</span>
+<span class="cstat-no" title="statement not covered" >					that._spawnReduceWorker([that.data[i * 2], that.data[i * 2 + 1]], cb, done);</span>
+				}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				that.data.splice(0, i * 2);</span>
+			}
+		});
+<span class="cstat-no" title="statement not covered" >		this.operation = newOp;</span>
+<span class="cstat-no" title="statement not covered" >		return this;</span>
+	};
+&nbsp;
+	Parallel.prototype.then = <span class="fstat-no" title="function not covered" >function (cb, errCb) {</span>
+<span class="cstat-no" title="statement not covered" >		var that = this;</span>
+<span class="cstat-no" title="statement not covered" >		var newOp = new Operation();</span>
+<span class="cstat-no" title="statement not covered" >		this.operation.then(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >			var retData = cb(that.data);</span>
+<span class="cstat-no" title="statement not covered" >			if (retData !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >				that.data = retData;</span>
+			}
+<span class="cstat-no" title="statement not covered" >			newOp.resolve(null, that.data);</span>
+		}, errCb);
+<span class="cstat-no" title="statement not covered" >		this.operation = newOp;</span>
+<span class="cstat-no" title="statement not covered" >		return this;</span>
+	};
+&nbsp;
+	<span class="missing-if-branch" title="else path not taken" >E</span>if (isCommonJS) {
+		module.exports = Parallel;
+	} else {
+<span class="cstat-no" title="statement not covered" >		self.Parallel = Parallel;</span>
+	}
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Mon Apr 17 2017 13:03:17 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
