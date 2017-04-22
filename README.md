@@ -1,4 +1,7 @@
-# test coverage for  [paralleljs (v0.2.1)](https://github.com/adambom/parallel.js#readme)  [![npm package](https://img.shields.io/npm/v/npmtest-paralleljs.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-paralleljs) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-paralleljs.svg)](https://travis-ci.org/npmtest/node-npmtest-paralleljs)
+# npmtest-paralleljs
+
+#### basic test-coverage for  [paralleljs (v0.2.1)](https://github.com/adambom/parallel.js#readme)  [![npm package](https://img.shields.io/npm/v/npmtest-paralleljs.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-paralleljs) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-paralleljs.svg)](https://travis-ci.org/npmtest/node-npmtest-paralleljs)
+
 #### parallel.js enables easy multi-thread processing in javascript
 
 [![NPM](https://nodei.co/npm/paralleljs.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/paralleljs)
@@ -94,7 +97,8 @@
             "test/runner.js"
         ]
     },
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "bin": {}
 }
 ```
 
